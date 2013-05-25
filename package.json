@@ -1,0 +1,26 @@
+{
+  "name": "d3.layout.grid",
+  "version": "0.0.1",
+  "description": "Grid layout for D3",
+  "main": "d3.layout.grid.js",
+  "scripts": {
+    "test": "node_modules/.bin/vows --spec"
+  },
+  "repository": "",
+  "keywords": [
+    "d3",
+    "layout",
+    "grid"
+  ],
+  "author": {
+    "name": "Jeremy Stucki",
+    "url": "http://interactivethings.com"
+  },
+  "license": "BSD",
+  "dependencies": {
+    "d3": "~3.1.5"
+  },
+  "devDependencies": {
+    "vows": "~0.7.0"
+  }
+}
