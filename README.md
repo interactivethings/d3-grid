@@ -17,6 +17,7 @@ The grid layout takes a one-dimensional array of data and arranges it on a two-d
 * Make `.bands()` spacing the default?
 * Change `.points()` and `.bands()` to `.spacing('points|bands')`
 * Shortcut for `.rows(x).cols(y)`? Maybe `.gridSize([x, y])`? Potentially confusing because there's already `.size()` and `.nodeSize()`.
+* Arbitrary angles for rows and columns
 
 ## Author
 
