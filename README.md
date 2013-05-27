@@ -11,6 +11,7 @@ The grid layout takes a one-dimensional array of data and arranges it on a two-d
 
 ## Things that may or may not come in the future
 
+* `.sort()`
 * Handle overflow if rows *and* columns are fixed (Repeat from the beginning? Add new rows/cols nontheless? Which take priority?)
 * Hex grid
 * Make `.bands()` spacing the default?
