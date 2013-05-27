@@ -100,6 +100,19 @@ vows.describe('d3.layout.grid').addBatch({
         {x: 1, y: 0.5}
       ]);
     },
+    // TODO: This needs some more thought ...
+    // '4 rows, 5 data points': function(grid) {
+    //   var l = grid().points().rows(4);
+    //   var nodes = [{}, {}, {}, {}, {}];
+
+    //   assert.deepEqual(l(nodes).map(layout), [
+    //     {x: 0, y: 0},
+    //     {x: 0, y: 1/3},
+    //     {x: 0, y: 2/3},
+    //     {x: 0, y: 1},
+    //     {x: 1, y: 0}
+    //   ]);
+    // },
     'fixed node sizes': function(grid) {
       var l = grid().points().nodeSize([1, 1]);
       var nodes = [{}, {}, {}, {}, {}];
