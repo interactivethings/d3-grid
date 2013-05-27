@@ -1,12 +1,12 @@
 {
   "name": "d3.layout.grid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Grid layout for D3",
   "main": "d3.layout.grid.js",
   "scripts": {
     "test": "node_modules/.bin/vows --spec"
   },
-  "repository": "",
+  "repository": "https://github.com/interactivethings/d3-grid.git",
   "keywords": [
     "d3",
     "layout",

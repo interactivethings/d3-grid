@@ -1,5 +1,5 @@
 (function() {
-  var DEBUG = true;
+  var DEBUG = false;
 
   d3.layout.grid = function() {
     var mode = "equal",
@@ -26,11 +26,11 @@
       // FIXME: make explicit rows/cols exclusive? Or find a smart way to deal with overflows (repeat?)
       // FIXME: when rows are set, fill top-to-bottom (make test with 5 data points and 4 rows)
 
-      if (_rows) {
-        _cols = Math.ceil(n / _rows);
+      if (_rows && !_cols) {
+        _cols = Math.ceil(n / _rows)
       } else {
         _cols || (_cols = Math.ceil(Math.sqrt(n)));
-        _rows = Math.ceil(n / _cols);
+        _rows || (_rows = Math.ceil(n / _cols));
       }
 
       if (nodeSize) {

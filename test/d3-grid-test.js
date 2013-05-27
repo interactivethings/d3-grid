@@ -9,7 +9,7 @@ vows.describe('d3.layout.grid').addBatch({
   'Grid layout' : {
     topic: function() { return d3.layout.grid; },
     'equally distributes 4 nodes within a 1x1 space, left to right, top to bottom': function(grid) {
-      var l = grid();
+      var l = grid().points();
       var nodes = [{}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -20,7 +20,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     '1 data point is in the center (is this good or should it be at [0,0]?)': function(grid) {
-      var l = grid();
+      var l = grid().points();
       var nodes = [{}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -28,7 +28,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'equally distributes 5 nodes within a 1x1 space': function(grid) {
-      var l = grid();
+      var l = grid().points();
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -40,7 +40,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'equally distributes 5 nodes within a 300x500 space': function(grid) {
-      var l = grid()
+      var l = grid().points()
         .size([300, 500]);
       var nodes = [{}, {}, {}, {}, {}];
 
@@ -53,7 +53,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'fixed amount of cols': function(grid) {
-      var l = grid().cols(2);
+      var l = grid().points().cols(2);
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -65,7 +65,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'fixed amount of rows': function(grid) {
-      var l = grid().rows(3);
+      var l = grid().points().rows(3);
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -76,8 +76,20 @@ vows.describe('d3.layout.grid').addBatch({
         {x: 0, y: 1}
       ]);
     },
+    'fixed amount of cols and rows': function(grid) {
+      var l = grid().points().cols(2).rows(5);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      assert.deepEqual(l(nodes).map(layout), [
+        {x: 0, y: 0},
+        {x: 1, y: 0},
+        {x: 0, y: 0.25},
+        {x: 1, y: 0.25},
+        {x: 0, y: 0.5}
+      ]);
+    },
     '1 row': function(grid) {
-      var l = grid().rows(1);
+      var l = grid().points().rows(1);
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -89,7 +101,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'fixed node sizes': function(grid) {
-      var l = grid().nodeSize([1, 1]);
+      var l = grid().points().nodeSize([1, 1]);
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.equal(l.size(), null);
@@ -102,7 +114,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'reset rows/cols after each call': function(grid) {
-      var l = grid();
+      var l = grid().points();
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
@@ -123,7 +135,7 @@ vows.describe('d3.layout.grid').addBatch({
       ]);
     },
     'fixed amount of cols stays the same': function(grid) {
-      var l = grid().cols(2);
+      var l = grid().points().cols(2);
       var nodes = [{}, {}, {}, {}, {}];
 
       assert.deepEqual(l(nodes).map(layout), [
