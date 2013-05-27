@@ -147,6 +147,50 @@ vows.describe('d3.layout.grid').addBatch({
 
       ]);
     },
+    'bands': function(grid) {
+      var l = grid().bands();
+      var nodes = [{}, {}, {}, {}, {}];
+
+      assert.deepEqual(l(nodes).map(layout), [
+        {x: 0, y: 0},
+        {x: 1/3, y: 0},
+        {x: 2/3, y: 0},
+        {x: 0, y: 0.5},
+        {x: 1/3, y: 0.5}
+      ]);
+
+      l.cols(2);
+
+      assert.deepEqual(l(nodes).map(layout), [
+        {x: 0, y: 0},
+        {x: 0.5, y: 0},
+        {x: 0, y: 1/3},
+        {x: 0.5, y: 1/3},
+        {x: 0, y: 2/3}
+      ]);
+    },
+    'bands with padding': function(grid) {
+      var l = grid().bands().padding([0.5, 0.5]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      assert.deepEqual(l(nodes).map(layout), [
+        {x: 0, y: 0},
+        {x: 0.4, y: 0},
+        {x: 0.8, y: 0},
+        {x: 0, y: 2/3},
+        {x: 0.4, y: 2/3}
+      ]);
+
+      l.cols(2);
+
+      assert.deepEqual(l(nodes).map(layout), [
+        {x: 0, y: 0},
+        {x: 2/3, y: 0},
+        {x: 0, y: 0.4},
+        {x: 2/3, y: 0.4},
+        {x: 0, y: 0.8}
+      ]);
+    }
   }
 }).export(module);
 

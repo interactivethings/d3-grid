@@ -8,6 +8,8 @@
         y = d3.scale.ordinal(),
         size = [1, 1],
         nodeSize = false,
+        bands = false,
+        padding = [0, 0],
         cols, rows;
 
     function grid(nodes) {
@@ -21,9 +23,8 @@
           _rows = rows ? rows : 0,
           col, row;
 
-      // FIXME: make explicit rows/cols exclusive
-      // FIXME: when rows are set, use different ordering than ltr (make test with 5 data points and 4 rows)
-      //        OR don't allow rows to be set (still need rtl ordering though ...)
+      // FIXME: make explicit rows/cols exclusive? Or find a smart way to deal with overflows (repeat?)
+      // FIXME: when rows are set, fill top-to-bottom (make test with 5 data points and 4 rows)
 
       if (_rows) {
         _cols = Math.ceil(n / _rows);
@@ -33,8 +34,11 @@
       }
 
       if (nodeSize) {
-        x.domain(d3.range(_cols)).range(d3.range(0, size[0] * _cols, size[0]));
-        y.domain(d3.range(_rows)).range(d3.range(0, size[1] * _rows, size[1]));
+        x.domain(d3.range(_cols)).range(d3.range(0, (size[0] + padding[0]) * _cols, size[0] + padding[0]));
+        y.domain(d3.range(_rows)).range(d3.range(0, (size[1] + padding[1]) * _rows, size[1] + padding[1]));
+      } else if (bands) {
+        x.domain(d3.range(_cols)).rangeBands([0, size[0]], padding[0], 0);
+        y.domain(d3.range(_rows)).rangeBands([0, size[1]], padding[1], 0);
       } else {
         x.domain(d3.range(_cols)).rangePoints([0, size[0]]);
         y.domain(d3.range(_rows)).rangePoints([0, size[1]]);
@@ -86,6 +90,22 @@
     grid.cols = function(value) {
       if (!arguments.length) return cols;
       cols = value;
+      return grid;
+    }
+
+    grid.bands = function() {
+      bands = true;
+      return grid;
+    }
+
+    grid.points = function() {
+      bands = false;
+      return grid;
+    }
+
+    grid.padding = function(value) {
+      if (!arguments.length) return padding;
+      padding = value;
       return grid;
     }
 
