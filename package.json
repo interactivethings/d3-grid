@@ -1,5 +1,5 @@
 {
-  "name": "d3.layout.grid",
+  "name": "d3-grid",
   "version": "0.0.2",
   "description": "Grid layout for D3",
   "main": "d3.layout.grid.js",
