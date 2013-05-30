@@ -117,7 +117,6 @@ vows.describe('d3.layout.grid').addBatch({
       var l = grid().points().nodeSize([1, 1]);
       var nodes = [{}, {}, {}, {}, {}];
 
-      assert.equal(l.size(), null);
       assert.deepEqual(l(nodes).map(layout), [
         {x: 0, y: 0},
         {x: 1, y: 0},
@@ -215,7 +214,55 @@ vows.describe('d3.layout.grid').addBatch({
         {x: 2/3, y: 0.4},
         {x: 0, y: 0.8}
       ]);
-    }
+    },
+    'initial sizes': function(grid) {
+      var l = grid();
+      assert.deepEqual(l.size(), [1, 1]);
+      assert.deepEqual(l.nodeSize(), [0, 0]);
+      assert.deepEqual(l.nodeSize([1, 1]).size(), [0, 0]);
+    },
+    '.size() reports actual size when .points().nodeSize() is set': function(grid) {
+      var l = grid().points().nodeSize([1, 1]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      l(nodes);
+      assert.deepEqual(l.size(), [2, 1]);
+    },
+    '.size() reports actual size when .points().nodeSize() is set': function(grid) {
+      var l = grid().points().nodeSize([1, 1]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      l(nodes);
+      assert.deepEqual(l.size(), [2, 1]);
+    },
+    '.size() reports actual size when .bands().nodeSize() is set': function(grid) {
+      var l = grid().bands().nodeSize([1, 1]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      l(nodes);
+      assert.deepEqual(l.size(), [3, 2]);
+    },
+    '.nodeSize() reports actual spacing between points when .points().size() is set': function(grid) {
+      var l = grid().points().size([1, 1]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      l(nodes);
+      assert.deepEqual(l.nodeSize(), [0.5, 1]);
+    },
+    '.nodeSize() reports actual size when .bands().size() is set': function(grid) {
+      var l = grid().bands().size([1, 1]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      l(nodes);
+      assert.deepEqual(l.nodeSize(), [1/3, 0.5]);
+    },
+    '.nodeSize() reports actual size when .bands().size().padding() is set': function(grid) {
+      var l = grid().bands().padding([0.5, 0.5]).size([1, 1]);
+      var nodes = [{}, {}, {}, {}, {}];
+
+      l(nodes);
+      assert.deepEqual(l.nodeSize(), [1/5, 1/3]);
+    },
   }
 }).export(module);
 

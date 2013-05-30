@@ -7,6 +7,7 @@
         x = d3.scale.ordinal(),
         y = d3.scale.ordinal(),
         size = [1, 1],
+        actualSize = [0, 0],
         nodeSize = false,
         bands = false,
         padding = [0, 0],
@@ -36,12 +37,18 @@
       if (nodeSize) {
         x.domain(d3.range(_cols)).range(d3.range(0, (size[0] + padding[0]) * _cols, size[0] + padding[0]));
         y.domain(d3.range(_rows)).range(d3.range(0, (size[1] + padding[1]) * _rows, size[1] + padding[1]));
+        actualSize[0] = bands ? x(_cols - 1) + size[0] : x(_cols - 1);
+        actualSize[1] = bands ? y(_rows - 1) + size[1] : y(_rows - 1);
       } else if (bands) {
         x.domain(d3.range(_cols)).rangeBands([0, size[0]], padding[0], 0);
         y.domain(d3.range(_rows)).rangeBands([0, size[1]], padding[1], 0);
+        actualSize[0] = x.rangeBand();
+        actualSize[1] = y.rangeBand();
       } else {
         x.domain(d3.range(_cols)).rangePoints([0, size[0]]);
         y.domain(d3.range(_rows)).rangePoints([0, size[1]]);
+        actualSize[0] = x(1);
+        actualSize[1] = y(1);
       }
 
       if (DEBUG) console.log('cols/rows', _cols, _rows);
@@ -70,13 +77,15 @@
     // }
 
     grid.size = function(value) {
-      if (!arguments.length) return nodeSize ? null : size;
+      if (!arguments.length) return nodeSize ? actualSize : size;
+      actualSize = [0, 0];
       nodeSize = (size = value) == null;
       return grid;
     }
 
     grid.nodeSize = function(value) {
-      if (!arguments.length) return nodeSize ? size : null;
+      if (!arguments.length) return nodeSize ? size : actualSize;
+      actualSize = [0, 0];
       nodeSize = (size = value) != null;
       return grid;
     }
