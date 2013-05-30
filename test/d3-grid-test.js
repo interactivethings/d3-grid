@@ -3,7 +3,7 @@ var vows = require('vows'),
 
 d3 = require('d3');
 
-var grid = require("../d3.layout.grid.js");
+var grid = require("../d3-grid.js");
 
 vows.describe('d3.layout.grid').addBatch({
   'Grid layout' : {

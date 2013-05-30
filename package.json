@@ -1,6 +1,6 @@
 {
   "name": "d3-grid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Grid layout for D3",
   "main": "d3-grid.js",
   "scripts": {
