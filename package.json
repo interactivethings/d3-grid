@@ -1,8 +1,8 @@
 {
   "name": "d3-grid",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Grid layout for D3",
-  "main": "d3.layout.grid.js",
+  "main": "d3-grid.js",
   "scripts": {
     "test": "node_modules/.bin/vows --spec"
   },
