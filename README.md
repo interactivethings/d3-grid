@@ -1,10 +1,8 @@
 # d3.layout.grid
 
-A grid layout for [D3](http://d3js.org).
+A grid layout for [D3](http://d3js.org). The grid layout takes a one-dimensional array of data and arranges it on a two-dimensional grid.
 
 ## API
-
-The grid layout takes a one-dimensional array of data and arranges it on a two-dimensional grid.
 
 <a name="layout-grid" href="#layout-grid">#</a> d3.layout.<b>grid</b>()
 
